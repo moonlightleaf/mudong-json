@@ -1,0 +1,8 @@
+add_executable(example_DOMStyle example_DOMStyle.cc)
+target_link_libraries(example_DOMStyle mudong-json)
+
+add_executable(example_SAXStyle example_SAXStyle.cc)
+target_link_libraries(example_SAXStyle mudong-json)
+
+add_executable(example_generateJSON example_generateJSON.cc)
+target_link_libraries(example_generateJSON mudong-json)
