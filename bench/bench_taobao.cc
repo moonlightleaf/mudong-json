@@ -55,9 +55,11 @@ void BM_read_parse_write(benchmark::State &s, ExtraArgs&&... extra_args)
     }
 }
 
-BENCHMARK_CAPTURE(BM_read, taobao, "/workspace/mudong-json/bench/taobao/cart.json")->Unit(benchmark::kMillisecond);
-BENCHMARK_CAPTURE(BM_read_parse, taobao, "/workspace/mudong-json/bench/taobao/cart.json")->Unit(benchmark::kMillisecond);
-BENCHMARK_CAPTURE(BM_read_parse_write, taobao, "/workspace/mudong-json/bench/taobao/cart.json")->Unit(benchmark::kMillisecond);
+std::string jsonDir("../../bench/taobao/cart.json");
+
+BENCHMARK_CAPTURE(BM_read, taobao, jsonDir.c_str())->Unit(benchmark::kMillisecond);
+BENCHMARK_CAPTURE(BM_read_parse, taobao, jsonDir.c_str())->Unit(benchmark::kMillisecond);
+BENCHMARK_CAPTURE(BM_read_parse_write, taobao, jsonDir.c_str())->Unit(benchmark::kMillisecond);
 
 
 BENCHMARK_MAIN();
