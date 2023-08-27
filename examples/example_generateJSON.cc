@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+using namespace mudong;
+
 int main() {
     json::FileWriteStream os(stdout);
     json::Writer writer(os);

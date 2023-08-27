@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+using namespace mudong;
+
 template<typename Handler>
 class AddOne: json::noncopyable {
 public:

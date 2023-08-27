@@ -4,6 +4,8 @@
 
 #pragma once
 
+namespace mudong {
+
 namespace json {
 
 class noncopyable {
@@ -16,3 +18,5 @@ protected:
 };
 
 } // namespace json
+
+} // namespace mudong

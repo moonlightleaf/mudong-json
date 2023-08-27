@@ -8,6 +8,8 @@
 #include <cstring>
 #include "Value.hpp"
 
+namespace mudong {
+
 namespace json {
 
 //匿名命名空间，只对当前文件可见
@@ -297,3 +299,5 @@ private:
 };
 
 } // namespace json
+
+} // namespace mudong

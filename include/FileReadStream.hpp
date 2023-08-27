@@ -10,6 +10,8 @@
 
 #include "noncopyable.hpp"
 
+namespace mudong {
+
 namespace json {
 
 class FileReadStream: noncopyable {
@@ -41,3 +43,4 @@ private:
 
 } // namespace json
 
+} // namespace mudong

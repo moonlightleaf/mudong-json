@@ -5,6 +5,8 @@
 #include <StringWriteStream.hpp>
 #include <Writer.hpp>
 
+using namespace mudong;
+
 template <class ...ExtraArgs>
 void BM_read(benchmark::State &s, ExtraArgs &&... extra_args)
 {

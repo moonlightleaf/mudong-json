@@ -9,6 +9,8 @@
 
 #include "noncopyable.hpp"
 
+namespace mudong {
+
 namespace json {
 
 class FileWriteStream: noncopyable {
@@ -24,6 +26,8 @@ private:
 };
 
 } // namespace json
+
+} // namespace mudong
 
 /*
 使用带缓冲的写，FileWriteStream对象析构时，调用fflush清空缓冲区，防止缓冲区中暂存的数据丢失

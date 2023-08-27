@@ -4,6 +4,8 @@
 
 #include <Value.hpp>
 
+using namespace mudong;
+
 inline void TEST_BOOL(bool b) {
     json::Value V(b);
     EXPECT_EQ(b, V.getBool());

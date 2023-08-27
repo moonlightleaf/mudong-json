@@ -9,6 +9,8 @@
 
 #include "noncopyable.hpp"
 
+namespace mudong {
+
 namespace json {
 
 class StringWriteStream: noncopyable {
@@ -24,3 +26,5 @@ private:
 };
 
 } // namespace json
+
+} // namespace mudong

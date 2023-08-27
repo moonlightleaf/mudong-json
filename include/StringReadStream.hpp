@@ -9,6 +9,8 @@
 
 #include "noncopyable.hpp"
 
+namespace mudong {
+
 namespace json {
 
 class StringReadStream: noncopyable {
@@ -31,6 +33,8 @@ private:
 };
 
 } // namespace json
+
+} // namespace mudong
 
 /*
 json_采用string类型存储而非string_view，虽然增加了空间占用和复制成本，但规避了StringReadStream(string())

@@ -14,6 +14,8 @@
 #include "FileReadStream.hpp"
 #include "StringReadStream.hpp"
 
+namespace mudong {
+
 namespace json {
 
 class Reader: noncopyable {
@@ -362,10 +364,12 @@ private:
 
 } // namespace json
 
+} // namespace mudong
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
 //ignore the type conversion warning
-void json::Reader::encodeUtf8(std::string& buffer, unsigned u)
+void mudong::json::Reader::encodeUtf8(std::string& buffer, unsigned u)
 {
     // unicode stuff from Milo's tutorial
     switch (u) {

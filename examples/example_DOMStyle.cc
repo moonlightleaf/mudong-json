@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace mudong;
+
 int main() {
     json::Document doc;
     auto err = doc.parse("{"

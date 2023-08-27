@@ -4,12 +4,12 @@
 #include <StringWriteStream.hpp>
 #include <Writer.hpp>
 
-using namespace json;
+using namespace mudong::json;
 
 inline void TEST_ROUNDTRIP(const std::string json) {
     Document doc;
     ParseError err = doc.parse(json);
-    EXPECT_EQ(err, json::ParseError::PARSE_OK);
+    EXPECT_EQ(err, ParseError::PARSE_OK);
     StringWriteStream os;
     Writer writer(os);
     doc.writeTo(writer);

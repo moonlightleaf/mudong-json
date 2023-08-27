@@ -15,6 +15,8 @@
 
 #include "noncopyable.hpp"
 
+namespace mudong {
+
 namespace json {
 
 enum class ValueType {
@@ -341,3 +343,5 @@ inline bool Value::writeTo(Handler& handler) const {
 
 
 } // namespace json
+
+} // namespace mudong

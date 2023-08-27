@@ -7,6 +7,8 @@
 #include <exception>
 #include <cassert>
 
+namespace mudong {
+
 namespace json {
 
 #define ERROR_MAP(XX) \
@@ -56,3 +58,5 @@ private:
 #undef ERROR_MAP
 
 } // namespace json
+
+} // namespace mudong

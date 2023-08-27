@@ -12,6 +12,8 @@
 #include "FileReadStream.hpp"
 #include "StringReadStream.hpp"
 
+namespace mudong {
+
 namespace json {
 
 class Document: public Value {
@@ -153,3 +155,5 @@ private:
 };
 
 } // namespace json
+
+} // namespace mudong
