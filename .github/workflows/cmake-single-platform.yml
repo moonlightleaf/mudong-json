@@ -29,7 +29,7 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake -DCMAKE_BUILD_TESTS=1 -DCMAKE_BUILD_BENCHMARK=1 -DCMAKE_BUILD_EXAMPLES=1 --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -DCMAKE_BUILD_TESTS=1 -DCMAKE_BUILD_BENCHMARK=1 -DCMAKE_BUILD_EXAMPLES=1
 
     - name: Test
       working-directory: ${{github.workspace}}/build
