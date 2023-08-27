@@ -1,5 +1,7 @@
 # Mudong-JSON : A JSON parser/generator for C++17
 
+[![Actions](https://github.com/moonlightleaf/mudong-json/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/moonlightleaf/mudong-json/actions/workflows/cmake-single-platform.yml)
+
 ## 项目简介
 
 mudong-json是一款基于C++17开发的JSON解析/生成器，采用递归下降的方式进行解析，支持`DOM(Document Object Model)`和`SAX(Simple API for XML)`两种API风格:
@@ -214,7 +216,7 @@ int main() {
 
 ## 测试&&性能
 
-mudong-json使用[Google Test](https://github.com/google/googletest)和[Google Benchmark](https://github.com/google/benchmark)进行测试，测试程序见`test`和`bench`目录。
+mudong-json使用[Google Test](https://github.com/google/googletest)和[Google Benchmark](https://github.com/google/benchmark)进行测试，测试程序见`test`和`bench`目录，测试JSON文件为fastjson提供的真实淘宝网数据。
 
 ## 编译&&使用
 
