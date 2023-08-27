@@ -216,7 +216,7 @@ int main() {
 
 ## 测试&&性能
 
-mudong-json使用[Google Test](https://github.com/google/googletest)和[Google Benchmark](https://github.com/google/benchmark)进行测试，测试程序见`test`和`bench`目录。
+mudong-json使用[Google Test](https://github.com/google/googletest)和[Google Benchmark](https://github.com/google/benchmark)进行测试，测试程序见`test`和`bench`目录，测试JSON文件为fastjson提供的真实淘宝网数据。
 
 ## 编译&&使用
 
