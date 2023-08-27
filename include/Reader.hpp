@@ -7,6 +7,7 @@
 #include <type_traits>
 #include <cmath>
 #include <string>
+#include <stdexcept>
 
 #include "Exception.hpp"
 #include "Value.hpp"
