@@ -1,6 +1,6 @@
 # Mudong-JSON : A JSON parser/generator for C++17
 
-[![workflows](https://github.com/moonlightleaf/mudong-json/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/moonlightleaf/mudong-json/actions/workflows/cmake-single-platform.yml)
+[![Actions](https://github.com/moonlightleaf/mudong-json/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/moonlightleaf/mudong-json/actions/workflows/cmake-single-platform.yml)
 
 ## 项目简介
 
