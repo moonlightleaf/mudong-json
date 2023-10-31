@@ -40,24 +40,24 @@ public:
     using ConstMemberIterator = std::vector<Member>::const_iterator;
 
 public:
-    explicit Value(ValueType = ValueType::TYPE_NULL);
+    explicit inline Value(ValueType = ValueType::TYPE_NULL);
     explicit Value(bool b)                    : type_(ValueType::TYPE_BOOL)  , b_(b)     { }
     explicit Value(int32_t i32)               : type_(ValueType::TYPE_INT32) , i32_(i32) { }
     explicit Value(int64_t i64)               : type_(ValueType::TYPE_INT64) , i64_(i64) { }
     explicit Value(double d)                  : type_(ValueType::TYPE_DOUBLE), d_(d)     { }
     explicit Value(std::string_view s) : type_(ValueType::TYPE_STRING), s_(new StringWithRefCount(s.begin(), s.end())) { }
     Value(const char* s, size_t len)          : Value(std::string_view(s, len)) { }
-    Value(const Value&);
-    Value(Value&&);
+    inline Value(const Value&);
+    inline Value(Value&&);
 
-    Value& operator=(const Value&);
-    Value& operator=(Value&&);
+    inline Value& operator=(const Value&);
+    inline Value& operator=(Value&&);
 
-    ~Value();
+    inline ~Value();
 
 public:
     ValueType getType() const { return type_; }
-    size_t    getSize() const;
+    inline size_t    getSize() const;
 
     bool isNull  () const { return type_ == ValueType::TYPE_NULL; }
     bool isBool  () const { return type_ == ValueType::TYPE_BOOL; }
@@ -93,8 +93,8 @@ public:
     Value& setObject()                   { this->~Value(); return *new (this) Value(ValueType::TYPE_OBJECT); }
     Value& setString(std::string_view s) { this->~Value(); return *new (this) Value(s); }
 
-    Value&       operator[](const std::string_view&);       // non-const obj invokes this.
-    const Value& operator[](const std::string_view&) const; // const obj invokes this.
+    inline Value&       operator[](const std::string_view&);       // non-const obj invokes this.
+    inline const Value& operator[](const std::string_view&) const; // const obj invokes this.
 
     MemberIterator      beginMember ()       { assert(type_ == ValueType::TYPE_OBJECT); return o_->data.begin(); }
     ConstMemberIterator cbeginMember() const { assert(type_ == ValueType::TYPE_OBJECT); return o_->data.cbegin(); }
@@ -102,13 +102,13 @@ public:
     ConstMemberIterator cendMember  () const { assert(type_ == ValueType::TYPE_OBJECT); return o_->data.cend(); }
     ConstMemberIterator beginMember () const { return cbeginMember(); } // const obj invokes this.
     ConstMemberIterator endMember   () const { return cendMember(); }   // const obj invokes this.
-    MemberIterator      findMember  (const std::string_view&);
-    ConstMemberIterator findMember  (const std::string_view&) const; // const obj invokes this.
+    inline MemberIterator      findMember  (const std::string_view&);
+    inline ConstMemberIterator findMember  (const std::string_view&) const; // const obj invokes this.
 
     template <typename V>
     Value& addMember(const char* k, V&& v) { return addMember(Value(k), Value(std::forward<V>(v))); }
 
-    Value& addMember(Value&&, Value&&);
+    inline Value& addMember(Value&&, Value&&);
 
     template <typename T>
     Value& addValue(T&& value) {
@@ -121,7 +121,7 @@ public:
     const Value& operator[](size_t i) const { assert(type_ == ValueType::TYPE_ARRAY); return a_->data[i]; }
 
     template <typename Handler>
-    bool writeTo(Handler&) const;
+    inline bool writeTo(Handler&) const;
 
 private:
     template <typename T, typename = std::enable_if_t<std::is_same_v<T, std::vector<char>>  || 
@@ -167,7 +167,7 @@ struct Member {
 
 // definition of class Value's member func
 
-Value::Value(ValueType type) :
+inline Value::Value(ValueType type) :
     type_(type),
     s_(nullptr) {
     switch (type_) {
@@ -183,7 +183,7 @@ Value::Value(ValueType type) :
     }
 }
 
-Value::Value(const Value& rhs) :
+inline Value::Value(const Value& rhs) :
     type_(rhs.type_),
     s_(rhs.s_) {
     switch (type_) {
@@ -199,14 +199,14 @@ Value::Value(const Value& rhs) :
     }
 }
 
-Value::Value(Value&& rhs) :
+inline Value::Value(Value&& rhs) :
     type_(rhs.type_),
     s_(rhs.s_) {
     rhs.type_ = ValueType::TYPE_NULL;
     rhs.a_ = nullptr; // 移动拷贝构造，使原右值失效，故当前对象无须考虑引用计数增加 
 }
 
-Value& Value::operator=(const Value& rhs) {
+inline Value& Value::operator=(const Value& rhs) {
     if (this == &rhs) return *this; // copy itself
 
     this->~Value();
@@ -226,7 +226,7 @@ Value& Value::operator=(const Value& rhs) {
     return *this;
 }
 
-Value& Value::operator=(Value&& rhs) {
+inline Value& Value::operator=(Value&& rhs) {
     if (this == &rhs) return *this;
 
     this->~Value();
@@ -237,7 +237,7 @@ Value& Value::operator=(Value&& rhs) {
     return *this;
 }
 
-Value::~Value() {
+inline Value::~Value() {
     switch (type_) {
         case ValueType::TYPE_NULL:
         case ValueType::TYPE_BOOL:
@@ -257,13 +257,13 @@ Value::~Value() {
     }
 }
 
-size_t Value::getSize() const {
+inline size_t Value::getSize() const {
     if (type_ == ValueType::TYPE_ARRAY) return a_->data.size();
     else if (type_ == ValueType::TYPE_OBJECT) return o_->data.size();
     return 1;
 }
 
-Value& Value::operator[](const std::string_view& key) {
+inline Value& Value::operator[](const std::string_view& key) {
     assert(type_ == ValueType::TYPE_OBJECT);
 
     auto iter = findMember(key);
@@ -274,21 +274,21 @@ Value& Value::operator[](const std::string_view& key) {
     return fake;
 }
 
-const Value& Value::operator[](const std::string_view& key) const {
+inline const Value& Value::operator[](const std::string_view& key) const {
     return const_cast<Value&>(*this)[key];
 }
 
-Value::MemberIterator Value::findMember(const std::string_view& key) {
+inline Value::MemberIterator Value::findMember(const std::string_view& key) {
     assert(type_ == ValueType::TYPE_OBJECT);
     return std::find_if(o_->data.begin(), o_->data.end(), 
                         [key](const Member& m) { return m.key.getStringView() == key; });
 }
 
-Value::ConstMemberIterator Value::findMember(const std::string_view& key) const {
+inline Value::ConstMemberIterator Value::findMember(const std::string_view& key) const {
     return const_cast<Value&>(*this).findMember(key);
 }
 
-Value& Value::addMember(Value&& key, Value&& value) {
+inline Value& Value::addMember(Value&& key, Value&& value) {
     assert(type_ == ValueType::TYPE_OBJECT);
     assert(key.type_ == ValueType::TYPE_STRING);
     assert(findMember(key.getStringView()) == endMember());

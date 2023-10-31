@@ -359,7 +359,7 @@ private:
     { return ch >= '0' && ch <= '9'; }
     static bool isDigit19(char ch)
     { return ch >= '1' && ch <= '9'; }
-    static void encodeUtf8(std::string& buffer, unsigned u);
+    static inline void encodeUtf8(std::string& buffer, unsigned u);
 };
 
 } // namespace json
@@ -369,7 +369,7 @@ private:
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
 //ignore the type conversion warning
-void mudong::json::Reader::encodeUtf8(std::string& buffer, unsigned u)
+inline void mudong::json::Reader::encodeUtf8(std::string& buffer, unsigned u)
 {
     // unicode stuff from Milo's tutorial
     switch (u) {

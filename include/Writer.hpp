@@ -15,7 +15,7 @@ namespace json {
 //匿名命名空间，只对当前文件可见
 namespace {
 
-unsigned countDigits(uint32_t n) {
+inline unsigned countDigits(uint32_t n) {
     static const uint32_t powers_of_10[] = {
             0,
             10,
@@ -39,7 +39,7 @@ unsigned countDigits(uint32_t n) {
     return t - (n < powers_of_10[t]) + 1;
 }
 
-unsigned countDigits(uint64_t n) {
+inline unsigned countDigits(uint64_t n) {
     static const uint64_t powers_of_10[] = {
             0,
             10,
@@ -70,7 +70,7 @@ unsigned countDigits(uint64_t n) {
 #pragma GCC diagnostic ignored "-Wconversion"
 
 template <typename T>
-unsigned itoa_(T val, char* buf) {
+inline unsigned itoa_(T val, char* buf) {
     static_assert(std::is_unsigned<T>::value, "must be unsigned integer");
 
     static const char digits[201] =
@@ -105,7 +105,7 @@ unsigned itoa_(T val, char* buf) {
 #pragma GCC diagnostic pop
 
 //fast int to string conversion
-unsigned itoa(int32_t val, char* buf) {
+inline unsigned itoa(int32_t val, char* buf) {
     auto u = static_cast<uint32_t>(val);
     if (val < 0) {
         *buf++ = '-';
@@ -113,7 +113,7 @@ unsigned itoa(int32_t val, char* buf) {
     }
     return (val < 0) + itoa_(u, buf);
 }
-unsigned itoa(int64_t val, char* buf) {
+inline unsigned itoa(int64_t val, char* buf) {
     auto u = static_cast<uint64_t>(val);
     if (val < 0) {
         *buf++ = '-';
