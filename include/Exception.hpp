@@ -38,7 +38,7 @@ inline const char* parseErrorStr(ParseError err) {
     static const char* tab[] = {
 #define GEN_STRERR(e, n) n,
             ERROR_MAP(GEN_STRERR)
-#undef GEN_STREE
+#undef GEN_STRERR
     };
 
     assert(unsigned(err) >= 0 && unsigned(err) < sizeof(tab) / sizeof(tab[0]));
