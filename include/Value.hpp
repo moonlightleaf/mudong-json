@@ -12,6 +12,7 @@
 #include <string>
 #include <type_traits>
 #include <algorithm>
+#include <cstring>
 
 #include "noncopyable.hpp"
 
