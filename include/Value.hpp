@@ -45,7 +45,8 @@ public:
     explicit Value(int32_t i32)               : type_(ValueType::TYPE_INT32) , i32_(i32) { }
     explicit Value(int64_t i64)               : type_(ValueType::TYPE_INT64) , i64_(i64) { }
     explicit Value(double d)                  : type_(ValueType::TYPE_DOUBLE), d_(d)     { }
-    explicit Value(std::string_view s) : type_(ValueType::TYPE_STRING), s_(new StringWithRefCount(s.begin(), s.end())) { }
+    explicit Value(std::string_view s)        : type_(ValueType::TYPE_STRING), s_(new StringWithRefCount(s.begin(), s.end())) { }
+    explicit Value(const char* s)             : type_(ValueType::TYPE_STRING), s_(new StringWithRefCount(s, s + strlen(s))) { }
     Value(const char* s, size_t len)          : Value(std::string_view(s, len)) { }
     inline Value(const Value&);
     inline Value(Value&&);
