@@ -179,7 +179,7 @@ public:
 
             // ".0" in "1.0" is important to represent double type.
             assert(n > 0 && n < 32);
-            auto it = std::find_if_not(buf, buf + n, isdigit);
+            auto it = std::find_if_not(buf, buf + n, [](char c){return c == '.';}); // find '.'
             if (it == buf + n) {
                 strcat(buf, ".0");
             }
